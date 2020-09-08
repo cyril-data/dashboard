@@ -9,13 +9,13 @@ import os
 
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
-# app = Flask(__name__,)
-CORS(app)
+flask_app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
+# flask_app = Flask(__name__,)
+CORS(flask_app)
 
-@app.route('/')
+@flask_app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    return flask_app.send_static_file('index.html')
 
 
 THR_OPTI = 0.5172413793103449
@@ -124,7 +124,7 @@ def density(pred , feature) :
   return {"x":list(x_grid),"y":list(y)}
 
 
-@app.route('/dashboard')
+@flask_app.route('/dashboard')
 def get_current_pred():
 
   idx_clients = pickle.load(open('idx_clients.sav', 'rb'))
@@ -158,7 +158,7 @@ def get_current_pred():
 
 
 
-@app.route('/dashboard/change', methods=['POST'])
+@flask_app.route('/dashboard/change', methods=['POST'])
 def change_pred():
   print("requette ID arrivée")
 
@@ -172,7 +172,7 @@ def change_pred():
 
 
 
-@app.route('/dashboard/id', methods=['POST'])
+@flask_app.route('/dashboard/id', methods=['POST'])
 def my_form_post():
   print("requette ID arrivée")
 
@@ -212,7 +212,7 @@ def my_form_post():
    }
 
 # if __name__ == "__main__":
-#   app.run(host='0.0.0.0', debug=True)
+#   flask_app.run(host='0.0.0.0', debug=True)
 
   if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
+    flask_app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
