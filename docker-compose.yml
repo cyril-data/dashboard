@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  api:
+    build: ./api
+    ports:
+      - 5000:5000
+    expose:
+      - 5000
+  frontend:     
+    stdin_open: true
+    build: ./frontend      
+    expose:
+      - 3000 
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+    
