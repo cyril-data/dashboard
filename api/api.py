@@ -9,13 +9,14 @@ import os
 
 from flask_cors import CORS
 
-
-# app = Flask(__name__, static_folder='../build', static_url_path='/')
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
+# app = Flask(__name__,)
 CORS(app)
-# @app.route('/')
-# def index():
-#     return app.send_static_file('index.html')
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
+
 
 THR_OPTI = 0.5172413793103449
 
@@ -210,7 +211,8 @@ def my_form_post():
     }
    }
 
-if __name__ == "__main__":
-  # app.run(debug=True)
-  app.run(host='0.0.0.0', debug=True)
-  # app.run(host='0.0.0.0', debug=Fa0))
+# if __name__ == "__main__":
+#   app.run(host='0.0.0.0', debug=True)
+
+  if __name__ == "__main__":
+    app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
