@@ -5,24 +5,27 @@ import numpy as np
 import h5py
 import seaborn as sns
 import os
-
-
+from statsmodels.nonparametric.kde import KDEUnivariate
 from flask_cors import CORS
 
 
-# app = Flask(__name__, static_folder='../build', static_url_path='/')
-app = Flask(__name__)
-CORS(app)
-# @app.route('/')
-# def index():
-#     return app.send_static_file('index.html')
+flask_app = Flask(__name__, static_folder='../build', static_url_path='/')
+# flask_app = Flask(__name__,)
+CORS(flask_app)
+
+path = "api/"
+
+@flask_app.route('/')
+def index():
+    return flask_app.send_static_file('index.html')
+
 
 THR_OPTI = 0.5172413793103449
 
-data = pickle.load(open('data_20ieme.sav', 'rb'))
+data = pickle.load(open(path+'data_20ieme.sav', 'rb'))
 print("data loaded")
 
-loaded_model = pickle.load(open('model_lgbm.sav', 'rb'))
+loaded_model = pickle.load(open(path+'model_lgbm.sav', 'rb'))
 print("model loaded")
 
 y_proba = loaded_model.predict_proba(data)
@@ -39,75 +42,7 @@ def predict(y_pred_proba, thr = THR_OPTI) :
 y_pred = predict(y_proba)
 print("y_pred calculated")
 
-knn = pickle.load(open('knn_1_20ieme.sav', 'rb'))
-
-
-# def knn(id_client) : 
-
-#   path = "../bdd/"
-
-#   idx_clients = pickle.load(open(path + 'idx/idx_clients.sav', 'rb'))
-
-
-#   t_start = time.time()
-
-#   nbr_nmatrix = 25
-#   nbr_split_nmatrix = 10
-
-#   nbr_sub = nbr_nmatrix * nbr_split_nmatrix 
-
-#   nsub = "numero de la sub du client"
-#   s_id = "numero de ligne de la sub du client"
-
-
-#   for tab in np.arange(nbr_sub) : 
-#     s = pickle.load(open(path + "idx/idx_split" + str(tab) + ".sav", 'rb'))
-
-    
-#     idx_d = np.where(s.values == id_client)[0]
-
-#     if len(idx_d) == 1 : 
-#       # print("on a stocké dans 's' uniquement les ID client des lignes de la sub : s_id. Dimension  =", np.shape(s))
-      
-#       nsub = tab
-#       s_id = idx_d[0]
-
-#       # print("le client est dans la sub" , nsub, " à la s_id", s_id)
-
-#   s = pickle.load(open(path+ "idx/idx_split" + str(nsub) + ".sav", 'rb')) # on s = [s_id] du client
-
-#   nmatrix = int(nsub / nbr_split_nmatrix) # numero de la matrix du client
-#   c_id = s.index[s_id] # numero de colonne de la matrix du client
-
-#   # print( "la ligne s_id:",s_id, "de la sub", nsub ,  "correspond à la colonne c_id:", c_id, "de la matrice", nmatrix)
-
-#   col = idx_clients[nmatrix] # colonne matrix du client
-
-#   # print("les colonnes de la matrix du client sont de dimension", np.shape(col))
-#   # print("on confirme que le numéro du client est par les colonnes c_id: ", col[c_id], ", donc = au numero du client : ", id_client)
-#   # print("on confirme que le numéro du client est par la sub s_id: ", s.iloc[s_id])
-
-#   h5f = h5py.File(path + "h5/dist_split" + str(nsub) + ".h5",'r') # on charge la sub des distances entre les clients 
-#   b = h5f['dist'][:]
-#   dist = b[s_id,:] # on selectionne la ligne de la sub du client 
-#   h5f.close()
-
-#   # print("la ligne de la sub est de dimension ", np.shape(dist))
-#   # print("la distance du client avec lui même devrait être nulle : ", dist[c_id])
-
-#   idx_d_500_kkn = list(np.argpartition(dist,500))[0:500] # on selectionne les 500 clients les plus proches en distance sans ordre (dans la sub)
-#   idx_knn_client = np.where(idx_d_500_kkn == c_id)[0][0] # on trouve dans cette liste knn non ordonné le c_id du client (dans la sub)
-#   idx_d_500_kkn.pop(np.where(idx_d_500_kkn == c_id)[0][0]) # on enlève la distance du client avec lui même (0)
-
-#   # print("on a trouvé les 499 plus proches voisins du client dans la sub ", np.shape(idx_d_500_kkn))
-
-#   idx_500_kkn = col[idx_d_500_kkn]
-
-#   # print("les ID des 10 clients parmis les 499 plus proches voisins sont : \n", idx_500_kkn[:10])
-
-#   return idx_500_kkn
-
-from statsmodels.nonparametric.kde import KDEUnivariate
+knn = pickle.load(open(path+'knn_1_20ieme.sav', 'rb'))
 
 def kde_statsmodels_u(y_data, x_grid, bandwidth=0.2, **kwargs):
     """Univariate Kernel Density Estimation with Statsmodels"""
@@ -123,12 +58,12 @@ def density(pred , feature) :
   return {"x":list(x_grid),"y":list(y)}
 
 
-@app.route('/dashboard')
+@flask_app.route('/api/dashboard')
 def get_current_pred():
 
-  idx_clients = pickle.load(open('idx_clients.sav', 'rb'))
+  idx_clients = pickle.load(open(path+'idx_clients.sav', 'rb'))
 
-  s = pickle.load(open("data_20ieme.sav", 'rb'))
+  s = pickle.load(open(path+'data_20ieme.sav', 'rb'))
   nmatrix = 0
   c_id = s.index[0]
   col = idx_clients[nmatrix] # colonne matrix du client
@@ -157,7 +92,7 @@ def get_current_pred():
 
 
 
-@app.route('/dashboard/change', methods=['POST'])
+@flask_app.route('/api/dashboard/change', methods=['POST'])
 def change_pred():
   print("requette ID arrivée")
 
@@ -171,7 +106,7 @@ def change_pred():
 
 
 
-@app.route('/dashboard/id', methods=['POST'])
+@flask_app.route('/api/dashboard/id', methods=['POST'])
 def my_form_post():
   print("requette ID arrivée")
 
@@ -210,7 +145,8 @@ def my_form_post():
     }
    }
 
-if __name__ == "__main__":
-  # app.run(debug=True)
-  app.run(host='0.0.0.0', debug=True)
-  # app.run(host='0.0.0.0', debug=Fa0))
+# if __name__ == "__main__":
+#   flask_app.run(host='0.0.0.0', debug=True)
+
+  if __name__ == "__main__":
+    flask_app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
