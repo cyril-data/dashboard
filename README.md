@@ -15,22 +15,22 @@ Entrez ici les instructions pour bien débuter avec votre projet...
 
 ### clone le repo et entrer dans la branch develop
 
-Dans un terminal, executez les commandes : ``
-git clone https://github.com/cyril-data/dashboard/ dashboard
+Dans un terminal, executez les commandes : 
+``git clone https://github.com/cyril-data/dashboard/ dashboard``
 
-cd dashboard
+``cd dashboard``
 
-git checkout remotes/origin/develop``
+``git checkout remotes/origin/develop``
 
 ### lancer le serveur flask
 
-``conda create --yes -n python_env_dashboard python=3
+``conda create --yes -n python_env_dashboard python=3``
 
-conda activate python_env_dashboard
+``conda activate python_env_dashboard``
 
-pip install -r requirements.txt 
+``pip install -r requirements.txt``
 
-python api/api.py``
+``python api/api.py``
 
 Le serveur sera accessible sur le port http://localhost:5000/
 
@@ -38,11 +38,11 @@ Le serveur sera accessible sur le port http://localhost:5000/
 
 Dans un autre terminal à la racine du projet lancer : 
 
-``cd frontend
+``cd frontend``
 
-npm install
+``npm install``
 
-npm start``
+``npm start``
 
 L'application en mode developpement sera lancée automatiquement sur http://localhost:3000/
 
