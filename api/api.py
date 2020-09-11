@@ -9,8 +9,8 @@ from statsmodels.nonparametric.kde import KDEUnivariate
 from flask_cors import CORS
 
 
-flask_app = Flask(__name__, static_folder='../build', static_url_path='/')
-# flask_app = Flask(__name__,)
+# flask_app = Flask(__name__, static_folder='../build', static_url_path='/')
+flask_app = Flask(__name__,)
 CORS(flask_app)
 
 path = "api/"
@@ -145,8 +145,8 @@ def my_form_post():
     }
    }
 
-# if __name__ == "__main__":
-#   flask_app.run(host='0.0.0.0', debug=True)
+if __name__ == "__main__":
+  flask_app.run(host='0.0.0.0', debug=True)
 
-  if __name__ == "__main__":
-    flask_app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
+  # if __name__ == "__main__":
+  #   flask_app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
