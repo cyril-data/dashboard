@@ -67,7 +67,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch('http://localhost:5000/dashboard').then(res => res.json()).then(data => {
+    fetch('/api/dashboard').then(res => res.json()).then(data => {
       setdataLoaded(data.loaded)
       setknnPred0(data.knn_pred_0);
       setknnPred1(data.knn_pred_1);
@@ -85,7 +85,7 @@ function App() {
       body: JSON.stringify(idClient)
     };
 
-  fetch("http://localhost:5000/dashboard/id", requestOptions)
+  fetch("/api/dashboard/id", requestOptions)
     .then(response => response.json())
     .then(res => {
       setclientInfo(res.infoIdClient);
