@@ -1,8 +1,6 @@
 # Dashboard
 _Flask - react app_
 
-[![forthebadge](http://dashboard-heroku-react-flask.herokuapp.com/)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
-
 Dashboard Flask +  react + bootstrap dans le cadre de la formation data scientist d'openclassroom
 
 ## Developpement : 
@@ -54,12 +52,8 @@ _exemples :_
 * [Materialize.css](http://materializecss.com) - Framework CSS (front-end)
 * [Atom](https://atom.io/) - Editeur de textes
 
-## Contributing
-
-Si vous souhaitez contribuer, lisez le fichier [CONTRIBUTING.md](https://example.org) pour savoir comment le faire.
-
 
 ## License
 
-Ce projet est sous licence ``exemple: WTFTPL`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
+Ce projet est sous licence ``Licence MIT`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
 
