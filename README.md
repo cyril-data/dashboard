@@ -5,8 +5,6 @@ Dashboard Flask +  react + bootstrap dans le cadre de la formation data scientis
 
 ## Developpement : 
 
-Entrez ici les instructions pour bien débuter avec votre projet...
-
 ### Pré-requis
 - conda
 - node js
