@@ -50,7 +50,7 @@ L'application en mode developpement sera lancée automatiquement sur http://loca
 
 ## Déploiement : 
 
-[dashboard-heroku-react-flask.herokuapp.com]
+http://dashboard-heroku-react-flask.herokuapp.com
 
 
 ## License
