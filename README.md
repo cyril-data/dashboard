@@ -11,16 +11,17 @@ Entrez ici les instructions pour bien débuter avec votre projet...
 - conda
 - node js
 
-### clone le repo et entrer dans la branch develop
+### Cloner le repo et entrer dans la branch develop
 
 Dans un terminal, executez les commandes : 
+
 ``git clone https://github.com/cyril-data/dashboard/ dashboard``
 
 ``cd dashboard``
 
 ``git checkout remotes/origin/develop``
 
-### lancer le serveur flask
+### Lancer le serveur flask
 
 ``conda create --yes -n python_env_dashboard python=3``
 
@@ -32,7 +33,7 @@ Dans un terminal, executez les commandes :
 
 Le serveur sera accessible sur le port http://localhost:5000/
 
-### lancer l'application client
+### Lancer l'application client
 
 Dans un autre terminal à la racine du projet lancer : 
 
@@ -44,13 +45,9 @@ Dans un autre terminal à la racine du projet lancer :
 
 L'application en mode developpement sera lancée automatiquement sur http://localhost:3000/
 
-## Fabriqué avec
 
-Entrez les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
 
-_exemples :_
-* [Materialize.css](http://materializecss.com) - Framework CSS (front-end)
-* [Atom](https://atom.io/) - Editeur de textes
+## Production : 
 
 
 ## License
