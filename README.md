@@ -3,6 +3,11 @@ _Flask - react app_
 
 Dashboard Flask +  react + bootstrap dans le cadre de la formation data scientist d'openclassroom
 
+## Demo
+
+http://dashboard-heroku-react-flask.herokuapp.com
+
+
 ## Developpement : 
 
 ### Pré-requis
@@ -46,11 +51,6 @@ L'application en mode developpement sera lancée automatiquement sur http://loca
 
 
 ## Production : sur branch master
-
-
-## Déploiement : 
-
-http://dashboard-heroku-react-flask.herokuapp.com
 
 
 ## License
