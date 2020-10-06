@@ -7,6 +7,8 @@ Dashboard Flask +  react + bootstrap dans le cadre de la formation data scientis
 
 http://dashboard-heroku-react-flask.herokuapp.com
 
+Etre patient car l'application doit être recharger en mémoire du serveur. 
+
 
 ## Developpement : 
 
